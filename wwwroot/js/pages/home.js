@@ -132,7 +132,10 @@ async function loadComments(postId) {
         ? `<p style="color:var(--text-muted); font-size:0.85rem">Henüz yorum yok.</p>`
         : comments.map(c => `
             <div class="comment-item">
-              <div class="avatar" style="width:32px;height:32px;font-size:0.8rem">${getInitial(c.username)}</div>
+              ${(c.avatarUrl || c.avatar_url)
+                ? `<img src="${c.avatarUrl || c.avatar_url}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;" />`
+                : `<div class="avatar" style="width:32px;height:32px;font-size:0.8rem">${getInitial(c.username)}</div>`
+              }
               <div class="comment-body">
                 <div class="comment-author">${c.username}</div>
                 <div class="comment-text">${c.text}</div>
