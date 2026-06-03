@@ -157,7 +157,7 @@ async function handleAddComment(postId) {
   const text = input.value.trim();
   if (!text) return showToast("Yorum boş olamaz", "error");
   try {
-    await api.createComment({ post_id: postId, text });
+    await api.createComment({ postId: postId, text });
     input.value = "";
     await loadComments(postId);
   } catch (err) {
